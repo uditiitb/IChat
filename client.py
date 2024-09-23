@@ -4,7 +4,7 @@ import threading
 import socket
 from datetime import datetime
 
-class WhatsAppStyleChatGUI:
+class Chat:
     def __init__(self, master):
         self.master = master
         master.title("IChat")
@@ -111,6 +111,6 @@ class WhatsAppStyleChatGUI:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    chat_client = WhatsAppStyleChatGUI(root)
+    chat_client = Chat(root)
     root.mainloop()
 
