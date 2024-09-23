@@ -14,7 +14,7 @@ nicknames = []
 
 def broadcast(message):
     for client in clients:
-        client.send(message.encode())
+        client.send(message.encode('ascii'))
     
 
 def handle(client):
@@ -34,22 +34,19 @@ def handle(client):
 def recieve():
     while True:
         client,address = server.accept()
-        clients.append(client)
+        print(f'Connected with str{address}')
 
-        while True:
-            if(client.recv(1024).decode()=='NICK'):
-                nickname = client.recv(1024).decode()
-                nicknames.append(nickname)
-                print(f'Connected with {nickname}')
-                broadcast(f'{nickname} joined!')
-                client.send('Connected to server'.encode())
-                break
+        client.send('NICK'.encode('ascii'))
+        nickname = client.recv(1024).decode('ascii')
+        nicknames.append(nickname)
+        clients.append(client) 
+
+        print(f'Nickname of client is: {nickname}')
+        broadcast(f'{nickname} joined the chat!')
+        client.send('Connected to Server!'.encode('ascii'))
 
         thread = threading.Thread(target = handle,args= ((client,)))
         thread.start()
 
 print('server is listening!')
 recieve()
-
-
-
