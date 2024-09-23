@@ -18,7 +18,7 @@ class WhatsAppStyleChatGUI:
 
         self.header_frame = tk.Frame(master, bg="#075E54", height=50)
         self.header_frame.pack(fill=tk.X)
-        self.header_label = tk.Label(self.header_frame, text="WhatsApp Chat", fg="white", bg="#075E54", font=('Arial', 16, 'bold'))
+        self.header_label = tk.Label(self.header_frame, text="IChat", fg="white", bg="#075E54", font=('Arial', 16, 'bold'))
         self.header_label.pack(pady=10)
 
         self.chat_frame = tk.Frame(master, bg="#ECE5DD")
