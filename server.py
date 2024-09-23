@@ -15,13 +15,18 @@ nicknames = []
 def broadcast(message):
     for client in clients:
         client.send(message.encode('ascii'))
+
+def broadcast_2(message,client):
+    for c in clients:
+        if(c!=client):
+            c.send(message.encode('ascii'))
     
 
 def handle(client):
     while True:
         try:
             message = client.recv(1024).decode()
-            broadcast(message)
+            broadcast_2(message,client)
         except:
             index = clients.index(client)
             clients.remove(client)
